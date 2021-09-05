@@ -1,0 +1,20 @@
+/* -----------------------------------------------------------------
+                SECTION LARGE
+ ----------------------------------------------------------------- */
+ .list-cards {
+    overflow-y: auto;
+    width: 100%; 
+}
+
+.todo-container {
+    overflow-y: auto;
+    max-height: 40vh;
+    margin-bottom: 1em;
+}
+
+
+
+.options-add-form {
+    display: flex;
+    flex-wrap: wrap;
+}

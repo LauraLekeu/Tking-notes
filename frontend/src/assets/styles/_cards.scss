@@ -1,0 +1,91 @@
+
+/* -----------------------------------------------------------------
+                CARDS
+ ----------------------------------------------------------------- */
+.card-titre {
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-contrast;
+    span {
+        font-weight: 800;
+        font-size: 16px;
+    }    
+}
+.card-soustitre {
+    color: $color-dark;
+    font-weight: 200;
+    margin-top: 10px; 
+}
+.text-separation {
+    color: $color-contrast;
+    font-size: 22px;
+    padding: 0 15px;
+}
+.card-date {
+    color: $color-dark;
+    font-weight: 100;
+    margin-top: 10px; 
+}
+.card-content {
+    color: $color-medium;
+    font-size: 12px;
+    line-height: 1.3em;
+    font-weight: 300;
+    margin-top: 10px; 
+}
+.cards-hover {
+    &:hover {
+        opacity: 60%;
+    }
+} 
+
+.card-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: $color-dark;
+
+    .icons-container {
+        margin-left: 1.5em; // Pour page cours
+
+        .icon-edit {
+            color: $color-dark;
+
+            &:hover {
+                color: $color-contrast;
+            }
+        }
+        .card-icons {
+            color: $color-light;
+
+            &.active {
+                color: $color-medium;
+
+                &:hover {
+                    color: $color-contrast;
+                }
+            }
+        }
+    }
+}
+
+.card-small {
+    padding: 20px 30px ;
+    margin-bottom: 1em;
+    background: $color-white;
+    box-shadow: 1px 1px 20px $color-light;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+
+    .boutons-card {
+        align-self: center;
+        justify-items: center;
+        width: auto;
+    }
+}
+
+
+
+
