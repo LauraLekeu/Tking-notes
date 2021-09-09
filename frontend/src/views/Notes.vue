@@ -42,7 +42,6 @@
     import Header from '@/components/Header.vue';
     import MenuTags from '../components/MenuTags.vue';
     import CardNotes from '../components/CardNotes.vue';
-    import CardMenu from '../components/CardMenu.vue';
     import DeleteTags from '../components/DeleteTags.vue';
 
     export default {
@@ -52,7 +51,6 @@
             Header,
             MenuTags,
                 CardNotes,
-                CardMenu,
                 DeleteTags
         },
         data() {

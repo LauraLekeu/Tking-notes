@@ -60,20 +60,12 @@
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
-    import MenuTags from '../components/MenuTags.vue';
-    import CardNotes from '../components/CardNotes.vue';
-    import CardMenu from '../components/CardMenu.vue';
-    import DeleteTags from '../components/DeleteTags.vue';
 
     export default {
         name: 'Cours',
         components: {
             Menu,
             Header,
-            MenuTags,
-            CardNotes,
-            CardMenu,
-            DeleteTags
         },
         data() {
             return {

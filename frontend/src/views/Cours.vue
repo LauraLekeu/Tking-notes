@@ -70,26 +70,56 @@
 
 
 <script>
+   // import axios from 'axios';
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
     import CardCours from '../components/CardCours.vue';
-    import CardMenu from '../components/CardMenu.vue';
 
     export default {
         name: 'Cours',
         components: {
             Menu,
             Header,
-                CardCours,
-                CardMenu,
+            CardCours,
         },
         data() {
             return {
-                user: null
+                user: null,
+                // courses: [],
+                // notes: [],
             }
         },
-        methods: {}
+
+        methods: {
+            // getAllCourses() {
+            //     axios.get('http://127.0.0.1:8000/api/courses').then((data) => {
+            //         this.courses = data.data;
+            //     }).catch(e => {
+            //         console.log(e);
+            //     })
+            // }, 
+            // getAllNotes() {
+            //     axios.get('http://127.0.0.1:8000/api/notes').then((data) => {
+            //         this.notes = data.data;
+            //         this.countNotesByCourses()
+            //     }).catch(e => {
+            //         console.log(e);
+            //     })
+            // },
+            // countNotesByCourses() { ////Marche pas
+            //     this.courses.forEach((course) => {
+            //         const notesByCourseId = this.notes.filter((note) => {
+            //             return note.course_id === course.id;
+            //         })
+            //         course = {...course, notesLenght: notesByCourseId.lenght}
+            //     })
+            // }
+        },
+        // created() {
+        //     this.getAllCourses();
+        //     this.getAllNotes();
+        // }
     }
 </script>
 

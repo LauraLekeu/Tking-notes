@@ -45,16 +45,14 @@
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
-    import CardTodos from '../components/CardTodos.vue';
-    import CardMenu from '../components/CardMenu.vue';
+
 
     export default {
         name: 'AddTodo',
         components: {
             Menu,
             Header,
-            CardTodos,
-            CardMenu,
+
         },
         data() {
             return {

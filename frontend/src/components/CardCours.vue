@@ -1,14 +1,13 @@
 <template>
 
-
     <div class="list-cards">
 
-        <div class="card-style-1  cards-hover">
+        <div v-for="course in courses" :key="course.id" class="card-style-1  cards-hover">
             <router-link to="/notes" class="card-link">
                 <div class="double-titre">
-                    <div class="card-titre">Lorem ipsum dolor sit amet con</div>
+                    <div class="card-titre">{{ course.name }}</div>
                     <div class="text-separation">|</div>
-                    <div class="card-date">78 notes</div>
+                    <div class="card-date">{{ course.notesLength }}</div>
                 </div>
             </router-link>
 
@@ -41,8 +40,13 @@
 <script>
     export default {
         name: 'CardCours',
-        props: {
-
+        computed: {
+            courses() {
+                return this.$store.getters.getCourses;
+            }
+        },
+        created() {
+             this.$store.dispatch('setCourses');
         }
     }
 </script>

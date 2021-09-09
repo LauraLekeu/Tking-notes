@@ -11,10 +11,6 @@
 
                 <CardDashboard />
 
-                <CardDashboard />
-
-                <CardDashboard />
-
             </div>
 
         </div>
