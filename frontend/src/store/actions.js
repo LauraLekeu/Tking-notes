@@ -34,6 +34,9 @@ const actions = {
     },
     deleteCourse({commit}, data) {
         commit('DELETE_COURSE', data)
+    },
+    deleteNote({commit}, data) {
+        commit('DELETE_NOTE', data)
     }
 }
 
