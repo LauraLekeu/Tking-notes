@@ -11,4 +11,15 @@ class Courses extends Controller
     public function index() {
         return response()->json(Course::all());
     }
+
+    public function add(Request $request) {
+        $course = new Course();
+        $course->name = $request->name;
+        $course->user_id = $request->user;
+        $course->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Ok'
+        ]);
+    }
 }
