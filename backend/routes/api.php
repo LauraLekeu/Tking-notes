@@ -36,4 +36,6 @@ Route::get('todos', [Todos::class, 'index'] );
 // Add
 Route::post('/addTodos', [Todos::class, 'add']);
 
+Route::post('/deleteTodos', [Todos::class, 'delete']);
+
 Route::get('tags', [Tags::class, 'index'] );

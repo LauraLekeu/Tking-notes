@@ -12,6 +12,10 @@ const mutations = {
     },
     SET_TAGS (state, data) {
         state.tags = data;
+    },
+    DELETE_TODO(state, data) {
+        const index = state.todos.findIndex(todo => todo.id === data.todo.id);
+        state.todos.splice(index, 1);
     }
 }
 

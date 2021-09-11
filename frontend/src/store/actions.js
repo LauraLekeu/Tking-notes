@@ -19,6 +19,9 @@ const actions = {
     setTags({commit}) {
         axios.get('http://127.0.0.1:8000/api/tags')
              .then(response => (commit('SET_TAGS', response.data)));
+    },
+    deleteTodo({commit}, data) {
+        commit('DELETE_TODO', data)
     }
 }
 
