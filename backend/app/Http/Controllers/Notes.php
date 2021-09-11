@@ -26,4 +26,17 @@ class Notes extends Controller
         // return DB::table('notes_has_tags')->get();
          return response()->json(Note::all());
     }
+
+    public function add(Request $request) {
+        $note = new Note();
+        $note->title = $request->title;
+        $note->content = $request->content;
+        $note->course_id = $request->course;
+        $note->user_id = $request->user;
+        $note->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Ok'
+        ]);
+    }
 }

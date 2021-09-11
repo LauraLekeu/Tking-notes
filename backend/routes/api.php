@@ -29,6 +29,8 @@ Route::get('courses', [Courses::class, 'index'] );
 Route::post('/addCourse', [Courses::class, 'add']);
 
 Route::get('notes', [Notes::class, 'index'] );
+// Add
+Route::post('/addNotes', [Notes::class, 'add']);
 
 Route::get('todos', [Todos::class, 'index'] );
 
