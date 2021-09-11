@@ -11,14 +11,13 @@
                 <div class="cards-devoirs">
 
                     <div class="section-fields">
-                        <select id="field-form-title" class=" fields-form" type="text" name="cours" placeholder="Titre"
+                        <select v-model="formData.course" id="field-form-title" class=" fields-form" type="text" name="cours" placeholder="Titre"
                             style="appearance: none;">
-                            <option selected> Sélectionner un cours *</option>
-                            <option value="a">Valeur 2</option>
-                            <option value="b">Valeur 3</option>
+                            <option selected="selected"> Sélectionner un cours *</option>
+                            <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
                         </select>
 
-                        <textarea id="field-form-text" class="fields-form" name=" content-note"
+                        <textarea v-model="formData.content" id="field-form-text" class="fields-form" name=" content-note"
                             placeholder="Texte *"></textarea>
                     </div>
 
@@ -30,9 +29,9 @@
                     <div class="options-add-form">
                         <label for="date" style="margin: 1em 0;margin-left: .5em;">À terminer pour le *
                         </label>
-                        <input name="date" type="date" id="date-todo" value="2021-06-01">
+                        <input name="date" type="date" id="date-todo" v-model="formData.deadline">
                     </div>
-                    <button class="btn-todo active">Ajouter</button>
+                    <button @click="add" class="btn-todo active">Ajouter</button>
 
                 </div>
             </div>
@@ -42,6 +41,7 @@
 
 
 <script>
+ import axios from 'axios';
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
@@ -57,10 +57,52 @@
         data() {
             return {
                 title: 'Nouvelle tâche',
-                user: null
+                user: null,
+                formData: {
+                    content: '',
+                    deadline:'',
+                    course: '',
+                    completed: '',
+                    user: '',
+                }
             }
         },
-        methods: {}
+       methods: {
+            add() {
+                this.formData.completed = 0;
+                this.formData.user = 1;
+                axios.post('http://127.0.0.1:8000/api/addTodos', this.formData)
+                    .then(response => {
+                        // Notification si OK
+                        console.log(response)
+                        this.$notify({
+                            title: 'Thank you !',
+                            text: 'The resource has been added!',
+                            type: 'success',
+                            speed: 600
+                        })
+                    })
+                    .catch(() => {
+                        // Notification si problème durant la transaction
+                        this.$notify({
+                            title: 'Oups...',
+                            text: 'There is a problem with adding',
+                            type: 'error',
+                            speed: 600
+                        })
+                        this.email = ''
+                    })
+                this.$router.push("/taches")
+            }
+        },
+        computed: {
+            courses() {
+                return this.$store.getters.getCourses;
+            },
+        },
+        created() {
+            this.$store.dispatch('setCourses');
+        }
     }
 </script>
 

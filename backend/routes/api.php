@@ -33,5 +33,7 @@ Route::get('notes', [Notes::class, 'index'] );
 Route::post('/addNotes', [Notes::class, 'add']);
 
 Route::get('todos', [Todos::class, 'index'] );
+// Add
+Route::post('/addTodos', [Todos::class, 'add']);
 
 Route::get('tags', [Tags::class, 'index'] );
