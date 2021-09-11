@@ -13,6 +13,15 @@ const mutations = {
     SET_TAGS (state, data) {
         state.tags = data;
     },
+    ADD_COURSE(state, payload) {
+        state.courses.push(payload)
+    },
+    ADD_NOTE(state, payload) {
+        state.notes.push(payload)
+    },
+    ADD_TODO(state, payload) {
+        state.todos.push(payload)
+    },
     DELETE_TODO(state, data) {
         const index = state.todos.findIndex(todo => todo.id === data.todo.id);
         state.todos.splice(index, 1);

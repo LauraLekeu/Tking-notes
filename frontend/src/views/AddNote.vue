@@ -88,6 +88,7 @@
                     .then(response => {
                         // Notification si OK
                         console.log(response)
+                        this.$store.dispatch('addNote', response.data.note)
                         this.$notify({
                             title: 'Thank you !',
                             text: 'The resource has been added!',

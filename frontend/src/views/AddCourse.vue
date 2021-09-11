@@ -58,6 +58,7 @@
                     .then(response => {
                         // Notification si OK
                         console.log(response)
+                        this.$store.dispatch('addCourse', response.data.course)
                         this.$notify({
                             title: 'Thank you !',
                             text: 'The resource has been added!',

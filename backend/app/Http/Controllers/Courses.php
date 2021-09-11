@@ -19,7 +19,8 @@ class Courses extends Controller
         $course->save();
         return response()->json([
             'status' => 200,
-            'message' => 'Ok'
+            'message' => 'Ok',
+            'course' => $course
         ]);
     }
 

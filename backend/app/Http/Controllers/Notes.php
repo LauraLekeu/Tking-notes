@@ -36,7 +36,8 @@ class Notes extends Controller
         $note->save();
         return response()->json([
             'status' => 200,
-            'message' => 'Ok'
+            'message' => 'Ok',
+            'note' => $note
         ]);
     }
 }
