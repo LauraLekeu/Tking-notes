@@ -3,7 +3,7 @@
         <Menu />
         <div class="page">
 
-            <Header />
+            <Header :title="title" />
 
             <div class="cards-dashboard">
                 <div class="cards-cours">
@@ -27,7 +27,7 @@
                         <option value="b">Valeur 3</option>
                     </select>
                     <div class="content-separation"></div>
-                    <div>
+                    <!-- <div>
                         <form action="">
                             <input class="" name="newtag" type="text" id="newtag" placeholder="Ajouter un nouveau tag">
                         </form>
@@ -46,7 +46,7 @@
                         <div class="tag-note hover">Photoshop</div>
                         <div class="tag-note hover">tag</div>
                         <div class="tag-note hover">CSS</div>
-                    </div>
+                    </div> -->
                     <button class="btn-todo active">Ajouter</button>
 
                 </div>
@@ -60,23 +60,16 @@
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
-    import MenuTags from '../components/MenuTags.vue';
-    import CardNotes from '../components/CardNotes.vue';
-    import CardMenu from '../components/CardMenu.vue';
-    import DeleteTags from '../components/DeleteTags.vue';
 
     export default {
         name: 'Cours',
         components: {
             Menu,
             Header,
-            MenuTags,
-            CardNotes,
-            CardMenu,
-            DeleteTags
         },
         data() {
             return {
+                title: 'Nouvelle note',
                 user: null
             }
         },

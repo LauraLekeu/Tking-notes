@@ -2,19 +2,16 @@
 
     <div class="list-cards">
         <!-- star card -->
-        <div class="card-style-1  cards-hover">
-            <a href="detail.html" class="card-link">
+        <div v-for="note in notes" :key="note.id" class="card-style-1  cards-hover">
+            <router-link :to="`/note-${note.id}`" class="card-link">
                 <div class="double-titre">
-                    <div class="card-titre">Titre de la note </div>
+                    <div class="card-titre"> {{ note.title }} </div>
                     <div class="text-separation">|</div>
-                    <div class="card-date">03/05/2021</div>
+                    <div class="card-date"> {{   course(note).name }} </div>
                 </div>
-                <div class="card-soustitre">Technique de l'image</div>
-                <div class="card-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                    nulla eum, deleniti quas inventore nam molestiae, nesciunt laborum, deserunt laboriosam
-                    culpa aut cum sapiente voluptatem nihil dolores quibusdam repudiandae autem! Explicabo
-                    officiis ex id esse, temporibus laboriosam nisi harum eligendi beatae</div>
-            </a>
+                <div class="card-soustitre"> {{ formatDate(note.created_at) }} </div>
+                <div class="card-content"> {{ note.content }} </div>
+            </router-link>
             <div class="card-icons">
                 <div class="icons-container">
                     <a href="detail.html" class="icon-edit">
@@ -35,10 +32,33 @@
 </template>
 
 <script>
+    import moment from 'moment'
+
     export default {
         name: 'CardDevoirs',
-        props: {
-
+        data() {
+            return {}
+        },
+        methods: {
+            formatDate(value) {
+                if (value) {
+                    return moment(String(value)).format("DD MMM YYYY ")
+                }
+            },
+        },
+        computed: {
+            notes() {
+                return this.$store.getters.getNotes;
+            },
+            course() {
+                return (note) => {
+                    return this.$store.getters.getCoursesByNotesId(note);
+                }
+            }
+        },
+        created() {
+            this.$store.dispatch('setNotes');
+            this.$store.dispatch('setCourses');
         }
     }
 </script>

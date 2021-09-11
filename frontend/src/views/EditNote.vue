@@ -3,31 +3,28 @@
         <Menu />
         <div class="page">
 
-            <Header />
+            <Header :title="title"  />
 
             <div class="cards-dashboard">
                 <div class="cards-cours">
 
-
                         <div class="section-fields">
                             <input id="field-form-title" class="fields-form" type="text" name="titre-note"
-                                placeholder="Titre*">
+                                v-model="note.title">
                            <textarea id="field-form-text" class="fields-form" name=" content-note"
-                            placeholder="Texte *"></textarea>
+                            v-model="note.content"></textarea>
                         </div>
                    
-
                 </div>
 
                 <div class="card-menu">
 
-                    <select name="cours" id="menu-options">
-                        <option selected> Sélectionner un cours *</option>
-                        <option value="a">Valeur 2</option>
-                        <option value="b">Valeur 3</option>
+                    <select v-model="note.course_id" name="cours" id="menu-options">
+                        <option v-for="course in courses" :key="course.id" :value="course.id" :selected="note.course_id === course.id ? true : false"> {{ course.name }} </option>
                     </select>
+                
                     <div class="content-separation"></div>
-                    <div>
+                    <!-- <div>
                         <form action="">
                             <input class="" name="newtag" type="text" id="newtag" placeholder="Ajouter un nouveau tag">
                         </form>
@@ -38,15 +35,15 @@
                                     d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                             </svg>
                         </label>
-                    </div>
-                    <div class="tags">
+                    </div> -->
+                    <!-- <div class="tags">
                         <div class="tag-note hover">HTML</div>
                         <div class="tag-note selected">Illustrator</div>
                         <div class="tag-note hover">XD</div>
                         <div class="tag-note hover">Photoshop</div>
                         <div class="tag-note hover">tag</div>
                         <div class="tag-note hover">CSS</div>
-                    </div>
+                    </div> -->
                     <button class="btn-todo active">Modifier</button>
 
                 </div>
@@ -70,10 +67,33 @@
         },
         data() {
             return {
+                title: 'Modifier la note',
                 user: null
             }
         },
-        methods: {}
+        computed: {
+            note() {
+                return this.$store.getters.getNoteById(this.$route.params.id)
+            },
+            course() {
+                return (note) => {
+                    return this.$store.getters.getCoursesByNotesId(note);
+                }
+            },
+            courses() {
+                return this.$store.getters.getCourses;
+            },
+            tags() {
+                return (note) => {
+                    return this.$store.getters.getTagsById(note);
+                }
+            }
+
+        },
+        created() {
+            this.$store.dispatch('setNotes');
+            this.$store.dispatch('setCourses');
+        }
     }
 </script>
 

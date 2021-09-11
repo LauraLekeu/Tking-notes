@@ -3,7 +3,8 @@
     <!-- star card -->
 
     <div class="card-devoirs">
-        <div class="card-style-2 cards-hover">
+
+        <div v-for="todo in todos" :key="todo.id" class="card-style-2 cards-hover">
             <div class="card-container">
                 <div class="icon-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-app"
@@ -13,12 +14,19 @@
                     </svg>
                 </div>
                 <div class="texts-content">
-                    <p class="text-title">Nom du cours | <strong>Date</strong></p>
-                    <p class="text-content">La tâche : Lorem dolor, Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Illum, inventore. sit ametconsectetur adipisicing elit. , quibusdam!</p>
+                    <p class="text-title">
+                        <strong style="font-weight:500">
+                            {{ formatDate(todo.deadline) }} 
+                        </strong> - 
+                            {{ course(todo).name }} 
+                    </p>
+                    <p class="text-content">{{ todo.content }}</p>
                 </div>
             </div>
         </div>
+
+
+
         <div class="content-separation" style="opacity: 70%;border-bottom: 1px solid #d1d1d1;margin-top: 2em;"> Devoirs
             terminés </div>
 
@@ -64,10 +72,35 @@
 </template>
 
 <script>
+    import moment from 'moment'
+
     export default {
         name: 'CardDevoirs',
         props: {
 
+        },
+        methods: {
+            formatDate(value) {
+                if (value) {
+                    return moment(String(value)).format("DD MMM YYYY ")
+                }
+            },
+        },
+        computed: {
+            todos() {
+                return this.$store.getters.getTodos;
+            },
+            course() {
+                return (todo) => {
+                    return this.$store.getters.getCoursesByTodosId(todo);
+                }
+             
+            }
+
+        },
+        created() {
+            this.$store.dispatch('setTodos');
+            this.$store.dispatch('setCourses');
         }
     }
 </script>

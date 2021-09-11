@@ -27,6 +27,6 @@ class Note extends Model
      * Getter des tags de la note
      */
     public function tags() {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag', 'notes_has_tags');
     }
 }
