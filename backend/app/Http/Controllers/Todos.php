@@ -22,7 +22,14 @@ class Todos extends Controller
         $todo->save();
         return response()->json([
             'status' => 200,
-            'message' => 'Ok'
+            'message' => 'Ok',
+            'todo' => $todo
         ]);
+    }
+
+    public function delete(Request $request) {
+        $todo = Todo::find($request->id);
+        $todo->delete();
+        return $todo;
     }
 }

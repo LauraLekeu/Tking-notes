@@ -28,12 +28,18 @@ Route::get('courses', [Courses::class, 'index'] );
 // Add
 Route::post('/addCourse', [Courses::class, 'add']);
 
+Route::post('/deleteCourses', [Courses::class, 'delete']);
+
 Route::get('notes', [Notes::class, 'index'] );
 // Add
 Route::post('/addNotes', [Notes::class, 'add']);
 
+Route::post('/deleteNotes', [Notes::class, 'delete']);
+
 Route::get('todos', [Todos::class, 'index'] );
 // Add
 Route::post('/addTodos', [Todos::class, 'add']);
+
+Route::post('/deleteTodos', [Todos::class, 'delete']);
 
 Route::get('tags', [Tags::class, 'index'] );

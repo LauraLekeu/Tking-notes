@@ -12,6 +12,27 @@ const mutations = {
     },
     SET_TAGS (state, data) {
         state.tags = data;
+    },
+    ADD_COURSE(state, payload) {
+        state.courses.push(payload)
+    },
+    ADD_NOTE(state, payload) {
+        state.notes.push(payload)
+    },
+    ADD_TODO(state, payload) {
+        state.todos.push(payload)
+    },
+    DELETE_TODO(state, data) {
+        const index = state.todos.findIndex(todo => todo.id === data.todo.id);
+        state.todos.splice(index, 1);
+    },
+    DELETE_COURSE(state, data) {
+        const index = state.courses.findIndex(course => course.id === data.course.id);
+        state.courses.splice(index, 1);
+    },
+    DELETE_NOTE(state, data) {
+        const index = state.notes.findIndex(note => note.id === data.note.id);
+        state.notes.splice(index, 1);
     }
 }
 

@@ -19,7 +19,14 @@ class Courses extends Controller
         $course->save();
         return response()->json([
             'status' => 200,
-            'message' => 'Ok'
+            'message' => 'Ok',
+            'course' => $course
         ]);
+    }
+
+    public function delete(Request $request) {
+        $cours = Course::find($request->id);
+        $cours->delete();
+        return $cours;
     }
 }

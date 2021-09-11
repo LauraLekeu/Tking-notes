@@ -36,7 +36,14 @@ class Notes extends Controller
         $note->save();
         return response()->json([
             'status' => 200,
-            'message' => 'Ok'
+            'message' => 'Ok',
+            'note' => $note
         ]);
+    }
+
+    public function delete(Request $request) {
+        $note = Note::find($request->id);
+        $note->delete();
+        return $note;
     }
 }

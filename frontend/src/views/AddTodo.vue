@@ -74,7 +74,7 @@
                 axios.post('http://127.0.0.1:8000/api/addTodos', this.formData)
                     .then(response => {
                         // Notification si OK
-                        console.log(response)
+                        this.$store.dispatch('addTodo', response.data.todo)
                         this.$notify({
                             title: 'Thank you !',
                             text: 'The resource has been added!',

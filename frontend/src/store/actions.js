@@ -19,6 +19,24 @@ const actions = {
     setTags({commit}) {
         axios.get('http://127.0.0.1:8000/api/tags')
              .then(response => (commit('SET_TAGS', response.data)));
+    },
+    addCourse({commit}, payload) {
+        commit('ADD_COURSE', payload)
+    },
+    addNote({commit}, payload) {
+        commit('ADD_NOTE', payload)
+    },
+    addTodo({commit}, payload) {
+        commit('ADD_TODO', payload)
+    },
+    deleteTodo({commit}, data) {
+        commit('DELETE_TODO', data)
+    },
+    deleteCourse({commit}, data) {
+        commit('DELETE_COURSE', data)
+    },
+    deleteNote({commit}, data) {
+        commit('DELETE_NOTE', data)
     }
 }
 
