@@ -25,9 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('courses', [Courses::class, 'index'] );
+// Add
+Route::post('/addCourse', [Courses::class, 'add']);
 
 Route::get('notes', [Notes::class, 'index'] );
+// Add
+Route::post('/addNotes', [Notes::class, 'add']);
 
 Route::get('todos', [Todos::class, 'index'] );
+// Add
+Route::post('/addTodos', [Todos::class, 'add']);
 
 Route::get('tags', [Tags::class, 'index'] );

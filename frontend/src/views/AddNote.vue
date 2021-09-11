@@ -6,28 +6,30 @@
             <Header :title="title" />
 
             <div class="cards-dashboard">
-                <div class="cards-cours">
+             
 
+                    <div class="cards-cours">
 
                         <div class="section-fields">
-                            <input id="field-form-title" class="fields-form" type="text" name="titre-note"
-                                placeholder="Titre*">
-                           <textarea id="field-form-text" class="fields-form" name=" content-note"
-                            placeholder="Texte *"></textarea>
+                            <input v-model="formData.title" id="field-form-title" class="fields-form" type="text"
+                                name="titre-note" placeholder="Titre*">
+                            <textarea v-model="formData.content" id="field-form-text" class="fields-form"
+                                name=" content-note" placeholder="Texte *"></textarea>
                         </div>
-                   
 
-                </div>
+                    </div>
 
-                <div class="card-menu">
+                    <div class="card-menu">
 
-                    <select name="cours" id="menu-options">
-                        <option selected> Sélectionner un cours *</option>
-                        <option value="a">Valeur 2</option>
-                        <option value="b">Valeur 3</option>
-                    </select>
-                    <div class="content-separation"></div>
-                    <!-- <div>
+                        <select v-model="formData.course" name="cours" id="menu-options">
+                            <option :selected="true">-- Sélectionner un cours --</option>
+                            <option v-for="course in courses" :key="course.id" :value="course.id">{{ course.name }}</option>
+                        </select>
+                        <div class="content-separation"></div>
+
+                        <button @click="add" class="btn-todo active">Ajouter</button>
+
+                        <!-- <div>
                         <form action="">
                             <input class="" name="newtag" type="text" id="newtag" placeholder="Ajouter un nouveau tag">
                         </form>
@@ -47,9 +49,8 @@
                         <div class="tag-note hover">tag</div>
                         <div class="tag-note hover">CSS</div>
                     </div> -->
-                    <button class="btn-todo active">Ajouter</button>
-
-                </div>
+                    </div>
+          
             </div>
         </div>
     </div>
@@ -57,6 +58,7 @@
 
 
 <script>
+    import axios from 'axios';
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
@@ -70,15 +72,64 @@
         data() {
             return {
                 title: 'Nouvelle note',
-                user: null
+                user: null,
+                formData: {
+                    title: '',
+                    content: '',
+                    course: '',
+                    user: ''
+                }
             }
         },
-        methods: {}
+        methods: {
+            add() {
+                this.formData.user = 1;
+                axios.post('http://127.0.0.1:8000/api/addNotes', this.formData)
+                    .then(response => {
+                        // Notification si OK
+                        console.log(response)
+                        this.$notify({
+                            title: 'Thank you !',
+                            text: 'The resource has been added!',
+                            type: 'success',
+                            speed: 600
+                        })
+                    })
+                    .catch(() => {
+                        // Notification si problème durant la transaction
+                        this.$notify({
+                            title: 'Oups...',
+                            text: 'There is a problem with adding',
+                            type: 'error',
+                            speed: 600
+                        })
+                        this.email = ''
+                    })
+                this.$router.push("/notes")
+            }
+        },
+        computed: {
+            courses() {
+                return this.$store.getters.getCourses;
+            },
+        },
+        created() {
+            this.$store.dispatch('setCourses');
+        }
     }
 </script>
 
 <style lang="scss">
-    .cards-cours {
+
+
+    .formulaire-add {
+        width: 100%;
+        margin: 0;
+
+        .cards-cours {
         width: 62%;
     }
+    }
+
+
 </style>
