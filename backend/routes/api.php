@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Courses;
 use App\Http\Controllers\Notes;
+use App\Http\Controllers\Todos;
+use App\Http\Controllers\Tags;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('courses', [Courses::class, 'index'] );
 
 Route::get('notes', [Notes::class, 'index'] );
+
+Route::get('todos', [Todos::class, 'index'] );
+
+Route::get('tags', [Tags::class, 'index'] );

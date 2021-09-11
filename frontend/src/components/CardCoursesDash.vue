@@ -1,12 +1,11 @@
 <template>
 
     <div class="dashboard-card">
-
         <div class="card-add-dash">
-            <a class="bouton-add" href="new-todo.html">
+            <router-link to="/nouveau-cours" class="bouton-add">
                 <div class="">
                     <div class="card-add">
-                        <div type="text" name="coursname" class="field-add"> Ajouter un cours </div>
+                        <div type="text" name="coursname" class="field-add"> Nouveau cours </div>
                         <button class="icon-plus">
                             <svg fill="currentColor" width="30" height="30" viewBox="0 0 448 448"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -16,15 +15,15 @@
                         </button>
                     </div>
                 </div>
-            </a>
+            </router-link>
             <div class="section-total">
                 <div class="total-container">
-                    <svg width="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        class="bi bi-collection-fill" viewBox="0 0 16 16">
+                    <svg width="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-collection-fill"
+                        viewBox="0 0 16 16">
                         <path
                             d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z" />
                     </svg>
-                    <span> 3 </span>
+                    <span> {{ nbCourses }} </span>
                 </div>
             </div>
         </div>
@@ -36,7 +35,9 @@
                 <div class="double-titre">
                     <div class="card-titre"> {{ course.name }} </div>
                 </div>
-                <div class="card-soustitre">Nombre de notes</div>
+                <div class="card-soustitre">
+                    {{ nbNotesByCourses(course).length ? `${nbNotesByCourses(course).length} note` : "Pas de note" }}
+                </div>
             </a>
             <div class="card-icons">
                 <div class=" icons-container">
@@ -61,7 +62,7 @@
 <script>
     // import axios from 'axios';
     export default {
-        name: 'CardDashboard',
+        name: 'CardCoursesDash',
         data() {
             return {
                 params: {
@@ -73,26 +74,26 @@
         computed: {
             courses() {
                 return this.$store.getters.getNbCourses(this.params);
+            },
+            nbCourses() {
+                return this.$store.getters.getCourses.length;
+            },
+            nbNotesByCourses() {
+                return (course) => {
+                    return this.$store.getters.getNotesByCoursesId(course);
+                }
             }
         },
         methods: {
-            
+
         },
         created() {
-             this.$store.dispatch('setCourses');
+            this.$store.dispatch('setCourses');
         }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    .card-add-dash {
-        background: white;
-        padding: 1em;
-        border-radius: 10px;
-    }
 
-    .bouton-add {
-        background: tomato;
-    }
 </style>

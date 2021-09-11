@@ -2,7 +2,7 @@
 
     <div class="header">
         
-        <div class="header-titre"> <span class="bold"> Titre page </span></div>
+        <div class="header-titre"> <span class="bold">{{ title }}</span></div>
 
         <div class="header-search">
     
@@ -21,9 +21,7 @@
 <script>
 export default {
   name: 'Header',
-  props: {
-
-  }
+  props: ['title']
 }
 </script>
 

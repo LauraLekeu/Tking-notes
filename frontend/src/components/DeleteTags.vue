@@ -1,8 +1,9 @@
 <template>
 
-   <div class="tags to-delete">
+<div>
+    <div v-for="tag in tags" :key="tag.id"  class="tags to-delete">
         <div class="tag-note delete">
-            <div>HTML</div>
+            <div>{{ tag.name}}</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                 <path
@@ -10,6 +11,9 @@
             </svg>
         </div>
     </div>
+</div>
+
+   
         
 </template>
 
@@ -18,6 +22,14 @@ export default {
   name: 'DeleteTags',
   props: {
 
+  },
+  computed: {
+    tags() {
+        return this.$store.getters.getTags;
+    },
+  },
+  created() {
+      this.$store.dispatch('setTags');
   }
 }
 </script>

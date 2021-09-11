@@ -8,11 +8,13 @@ import Todos from '../views/Todos.vue'
 import AddTodo from '../views/AddTodo.vue'
 
 import Cours from '../views/Cours.vue'
+import AddCourse from '../views/AddCourse.vue'
 
 import Notes from '../views/Notes.vue'
 import AddNote from '../views/AddNote.vue'
 import EditNote from '../views/EditNote.vue'
 import DetailNote from '../views/DetailNote.vue'
+import EditCourse from '../views/EditCourse.vue'
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     component: Cours,
   },
   {
+    path: '/nouveau-cours',
+    name: 'AddCourse',
+    component: AddCourse,
+  },
+  {
+    path: '/edit/cours-:id',
+    name: 'EditCourse',
+    component: EditCourse,
+  },
+  {
     path: '/notes',
     name: 'Notes',
     component: Notes,
@@ -52,12 +64,12 @@ const routes = [
     component: AddNote,
   },
   {
-    path: '/modification-note',
+    path: '/edit/note-:id',
     name: 'EditNote',
     component: EditNote,
   },
   {
-    path: '/detail-note',
+    path: '/note-:id',
     name: 'DetailNote',
     component: DetailNote,
   },

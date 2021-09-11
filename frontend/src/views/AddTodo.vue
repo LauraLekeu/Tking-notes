@@ -5,7 +5,7 @@
 
         <div class="page">
 
-            <Header />
+            <Header :title="title" />
 
             <div class="cards-dashboard">
                 <div class="cards-devoirs">
@@ -56,6 +56,7 @@
         },
         data() {
             return {
+                title: 'Nouvelle tâche',
                 user: null
             }
         },

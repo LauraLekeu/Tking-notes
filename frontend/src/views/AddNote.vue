@@ -3,7 +3,7 @@
         <Menu />
         <div class="page">
 
-            <Header />
+            <Header :title="title" />
 
             <div class="cards-dashboard">
                 <div class="cards-cours">
@@ -27,7 +27,7 @@
                         <option value="b">Valeur 3</option>
                     </select>
                     <div class="content-separation"></div>
-                    <div>
+                    <!-- <div>
                         <form action="">
                             <input class="" name="newtag" type="text" id="newtag" placeholder="Ajouter un nouveau tag">
                         </form>
@@ -46,7 +46,7 @@
                         <div class="tag-note hover">Photoshop</div>
                         <div class="tag-note hover">tag</div>
                         <div class="tag-note hover">CSS</div>
-                    </div>
+                    </div> -->
                     <button class="btn-todo active">Ajouter</button>
 
                 </div>
@@ -69,6 +69,7 @@
         },
         data() {
             return {
+                title: 'Nouvelle note',
                 user: null
             }
         },

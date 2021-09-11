@@ -36,90 +36,11 @@
         props: {
 
         }
+        
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-    .card-menu {
-        background: white;
-        border-radius: 10px;
-        padding: 1em;
-        width: 35%;
-        height: fit-content;
-    }
-    .card-add {
-        display: flex;
-        padding: 5px 5px;
-        border-radius: 10px;
-        justify-content: space-between;
-        margin-bottom: 1em;
-
-        &.edit-cours {
-            margin: 1em 0;
-
-            .field-add {
-
-                border: solid 1px $color-light;
-                background-color: $color-light;
-                color: $color-contrast;
-                font-family: $font-primaire;
-                font-size: 14px;
-            }
-
-            &:hover {
-                .field-add {
-                    border: solid 1px $color-medium;
-                    background-color: $color-medium;
-                }
-
-                svg {
-                    color: $color-medium;
-                }
-            }
-        }
-
-        &:hover {
-            .field-add {
-                border: solid 1px $color-dark;
-                background-color: $color-dark;
-            }
-
-            svg {
-                color: $color-dark;
-            }
-        }
-
-
-        .icon-plus {
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-decoration: none;
-            font-size: 16px;
-            color: $color-second-contrast;
-
-            svg {
-                width: 30px;
-            }
-        }
-
-        .field-add {
-            border-radius: 10px;
-            color: $color-white;
-            padding: 20px 30px;
-            border: solid 1px $color-contrast;
-            font-size: 16px;
-            letter-spacing: 1px;
-            background-color: $color-contrast;
-            cursor: pointer;
-
-
-            &::placeholder {
-                color: $color-white;
-                font-family: $font-primaire;
-                font-size: 16px;
-            }
-        }
-    }
+    
 </style>

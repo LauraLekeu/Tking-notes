@@ -17,6 +17,18 @@ a {
     text-decoration: none;
 }
 
+.content-separation {  
+    text-align: center;
+    // margin-top: 1em;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 22px;
+    color: $color-dark;
+    padding-bottom: .5em;
+    border-bottom: 1px solid $color-light;
+    margin: .5em 0 1em 0;
+}
+
 /* -----------------------------------------------------------------
                 MAIN
  ----------------------------------------------------------------- */

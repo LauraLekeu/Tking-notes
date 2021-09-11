@@ -1,16 +1,11 @@
 <template>
 
-   
-   <div class="menu-tag tags">
-        <div class="tag-note hover">HTML</div>
-        <div class="tag-note active">Illustrator</div>
-        <div class="tag-note hover">XD</div>
-        <div class="tag-note hover">Photo</div>
-        <div class="tag-note hover">tag</div>
-        <div class="tag-note hover">CSS</div>
-        <div class="tag-note hover">un autre tag</div>
-        <div class="tag-note hover">JS</div>
+<div>
+    <div v-for="tag in tags" :key="tag.id" class="menu-tag tags">
+        <div class="tag-note"> {{ tag.name }} </div>
     </div>
+</div>
+  
         
 </template>
 
@@ -19,6 +14,14 @@ export default {
   name: 'MenuTags',
   props: {
 
+  },
+  computed: {
+    tags() {
+        return this.$store.getters.getTags;
+    },
+  },
+  created() {
+      this.$store.dispatch('setTags');
   }
 }
 </script>
