@@ -28,6 +28,8 @@ Route::get('courses', [Courses::class, 'index'] );
 // Add
 Route::post('/addCourse', [Courses::class, 'add']);
 
+Route::post('/deleteCourses', [Courses::class, 'delete']);
+
 Route::get('notes', [Notes::class, 'index'] );
 // Add
 Route::post('/addNotes', [Notes::class, 'add']);

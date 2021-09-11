@@ -7,7 +7,9 @@
                 <div class="double-titre">
                     <div class="card-titre">{{ course.name }}</div>
                     <div class="text-separation">|</div>
-                    <div class="card-date">{{ nbNotesByCourses(course).length ? `${nbNotesByCourses(course).length} note` : "Pas de note" }}</div>
+                    <div class="card-date">
+                        {{ nbNotesByCourses(course).length ? `${nbNotesByCourses(course).length} note` : "Pas de note" }}
+                    </div>
                 </div>
             </router-link>
 
@@ -22,13 +24,20 @@
                     </router-link>
                 </div>
                 <div class="card-icons icons-container">
-                    <a href="#" class="card-icons">
+                    <div v-if="nbNotesByCourses(course).length < 1"  class="card-icons">
+                        <svg @click="supprimer(course.id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-trash-fill  delete-course" viewBox="0 0 16 16">
+                            <path
+                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                        </svg>
+                    </div>
+                    <div v-else>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             class="bi bi-trash-fill" viewBox="0 0 16 16">
                             <path
                                 d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                         </svg>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,8 +47,38 @@
 </template>
 
 <script>
+ import axios from 'axios';
+
     export default {
         name: 'CardCours',
+        methods: {
+            supprimer(id) {
+                console.log(id)
+                axios.post('http://127.0.0.1:8000/api/deleteCourses', {id})
+                .then(response => {
+                    console.log(response.data)
+                      // Notification si OK
+                      this.$store.dispatch('deleteCourse', {course: response.data});
+                      console.log('note supprimée', response);
+                      this.$notify({
+                          title: 'Thank you !',
+                          text: 'The resource has been deleted!',
+                          type: 'success',
+                          speed: 600
+                      })
+                  })
+                  .catch(() => {
+                      // Notification si problème durant la transaction
+                      this.$notify({
+                          title: 'Oups...',
+                          text: 'There is a problem during deletion',
+                          type: 'error',
+                          speed: 600
+                      })
+                  })
+                 this.$router.push("/cours") 
+            }
+        },
         computed: {
             courses() {
                 return this.$store.getters.getCourses;
@@ -100,6 +139,15 @@
         #formulaire-edit-cours {
             display: flex;
             width: 100%;
+        }
+    }
+
+    .delete-course {
+        color: $color-dark;
+        cursor: pointer;
+
+        &:hover {
+            color: $color-contrast;
         }
     }
 </style>

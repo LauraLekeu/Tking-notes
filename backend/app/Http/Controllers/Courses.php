@@ -22,4 +22,10 @@ class Courses extends Controller
             'message' => 'Ok'
         ]);
     }
+
+    public function delete(Request $request) {
+        $cours = Course::find($request->id);
+        $cours->delete();
+        return $cours;
+    }
 }

@@ -16,6 +16,10 @@ const mutations = {
     DELETE_TODO(state, data) {
         const index = state.todos.findIndex(todo => todo.id === data.todo.id);
         state.todos.splice(index, 1);
+    },
+    DELETE_COURSE(state, data) {
+        const index = state.courses.findIndex(course => course.id === data.course.id);
+        state.courses.splice(index, 1);
     }
 }
 

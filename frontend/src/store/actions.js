@@ -22,6 +22,9 @@ const actions = {
     },
     deleteTodo({commit}, data) {
         commit('DELETE_TODO', data)
+    },
+    deleteCourse({commit}, data) {
+        commit('DELETE_COURSE', data)
     }
 }
 
