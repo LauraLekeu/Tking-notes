@@ -41,6 +41,23 @@ class Notes extends Controller
         ]);
     }
 
+    public function edit(Request $request) {
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $out->writeln($request->title);
+        $note = Note::find($request->id);
+        $note->title = $request->title;
+        $note->content = $request->content;
+        $note->course_id = $request->course;
+        $note->user_id = $request->user;
+        $note->updated_at = NOW();
+        $note->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Ok',
+            'note' => $note
+        ]);
+    }
+
     public function delete(Request $request) {
         $note = Note::find($request->id);
         $note->delete();

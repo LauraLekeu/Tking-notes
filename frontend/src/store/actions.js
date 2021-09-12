@@ -37,6 +37,9 @@ const actions = {
     },
     deleteNote({commit}, data) {
         commit('DELETE_NOTE', data)
+    },
+    editNote({commit}, data) {
+        commit('EDIT_NOTE', data)
     }
 }
 

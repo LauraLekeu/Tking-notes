@@ -4,18 +4,7 @@
 
         <div class="card-add-dash">
             <router-link class="bouton-add" to="nouvelle-note">
-                <div class="">
-                    <div class="card-add">
-                        <div type="text" name="coursname" class="field-add"> Nouvelle note </div>
-                        <button class="icon-plus">
-                            <svg fill="currentColor" width="30" height="30" viewBox="0 0 448 448"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                <div class="test-new-btn">Créer une nouvelle note</div>
             </router-link>
             <div class="section-total">
                 <div class="total-container">
@@ -29,7 +18,9 @@
             </div>
         </div>
 
-        <div class="content-separation"></div>
+        <div class="content-separation" style=" font-size:1em; opacity: 70%;border-bottom: 1px solid #d1d1d1;margin-top: 1.5em;">
+            Dernières notes
+        </div>
 
         <div v-for="note in notes" :key="note.id" class=" card-small cards-hover">
             <a href="detail.html" class="card-link">
@@ -67,7 +58,7 @@
             return {
                 params: {
                     start: 0,
-                    end: 3,
+                    end: 2,
                 }
             }
         },

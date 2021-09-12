@@ -34,6 +34,8 @@ Route::get('notes', [Notes::class, 'index'] );
 // Add
 Route::post('/addNotes', [Notes::class, 'add']);
 
+Route::post('/editNotes', [Notes::class, 'edit']);
+
 Route::post('/deleteNotes', [Notes::class, 'delete']);
 
 Route::get('todos', [Todos::class, 'index'] );
