@@ -32,7 +32,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 
     &-titre{
         font-weight: 200;

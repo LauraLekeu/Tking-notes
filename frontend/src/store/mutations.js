@@ -33,6 +33,11 @@ const mutations = {
     DELETE_NOTE(state, data) {
         const index = state.notes.findIndex(note => note.id === data.note.id);
         state.notes.splice(index, 1);
+    },
+    EDIT_NOTE(state, data) {
+        const index = state.notes.findIndex(note => note.id === data.note.id);
+        state.notes.splice(index, 1);
+        state.notes.splice(index, 0, data.note);
     }
 }
 

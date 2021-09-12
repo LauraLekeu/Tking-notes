@@ -10,41 +10,22 @@
 
                         <div class="section-fields">
                             <input id="field-form-title" class="fields-form" type="text" name="titre-note"
-                                v-model="note.title">
+                                v-model="formData.title">
                            <textarea id="field-form-text" class="fields-form" name=" content-note"
-                            v-model="note.content"></textarea>
+                            v-model="formData.content"></textarea>
                         </div>
                    
                 </div>
 
                 <div class="card-menu">
 
-                    <select v-model="note.course_id" name="cours" id="menu-options">
-                        <option v-for="course in courses" :key="course.id" :value="course.id" :selected="note.course_id === course.id ? true : false"> {{ course.name }} </option>
+                    <select v-model="formData.course_id" name="cours" id="menu-options">
+                        <option v-for="course in courses" :key="course.id" :value="formData.course" :selected="formData.course === course.id ? true : false"> {{ course.name }} </option>
                     </select>
-                
+
                     <div class="content-separation"></div>
-                    <!-- <div>
-                        <form action="">
-                            <input class="" name="newtag" type="text" id="newtag" placeholder="Ajouter un nouveau tag">
-                        </form>
-                        <label for="cours" id="fleche-menu-options">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                            </svg>
-                        </label>
-                    </div> -->
-                    <!-- <div class="tags">
-                        <div class="tag-note hover">HTML</div>
-                        <div class="tag-note selected">Illustrator</div>
-                        <div class="tag-note hover">XD</div>
-                        <div class="tag-note hover">Photoshop</div>
-                        <div class="tag-note hover">tag</div>
-                        <div class="tag-note hover">CSS</div>
-                    </div> -->
-                    <button class="btn-todo active">Modifier</button>
+
+                    <button @click="edit()" class="btn-todo active">Modifier</button>
 
                 </div>
             </div>
@@ -54,6 +35,7 @@
 
 
 <script>
+import axios from 'axios'
     // @ is an alias to /src
     import Menu from '@/components/Menu.vue';
     import Header from '@/components/Header.vue';
@@ -68,8 +50,43 @@
         data() {
             return {
                 title: 'Modifier la note',
-                user: null
+                user: null,
+                formData: {
+                    id: null,
+                    title: '',
+                    content: '',
+                    course: ''
+                }
             }
+        },
+        methods: {
+            edit() {
+                this.formData.user = 1;
+                console.log('form data', this.formData)
+                axios.post('http://127.0.0.1:8000/api/editNotes', this.formData)
+                    .then(response => {
+                            // Notification si OK
+                            this.$notify({
+                            title: 'Thank you !',
+                            text: 'The resource has been modified!',
+                            type: 'success',
+                            speed: 600
+                            })  
+                            this.$store.dispatch('editNote', response.data.note)
+                        })
+                        .catch(() => {
+                                // Notification si problème durant la transaction
+                                this.$notify({
+                                        title: 'Oups...',
+                                        text: 'There is a problem during modification',
+                                        type: 'error',
+                                        speed: 600
+                                        })
+                        }).finally(() => {
+                            this.$router.push(`/note-${this.$route.params.id}`);
+                        })
+            }
+
         },
         computed: {
             note() {
@@ -93,6 +110,14 @@
         created() {
             this.$store.dispatch('setNotes');
             this.$store.dispatch('setCourses');
+        }, 
+        mounted() {
+            this.formData = {
+                id: this.note.id,
+                title: this.note.title,
+                content: this.note.content,
+                course: this.note.course_id
+            }
         }
     }
 </script>
