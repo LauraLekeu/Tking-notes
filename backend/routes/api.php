@@ -8,6 +8,7 @@ use App\Http\Controllers\Notes;
 use App\Http\Controllers\Todos;
 use App\Http\Controllers\Tags;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Search;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -38,4 +39,6 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::post('/deleteTodos', [Todos::class, 'delete']);
     
     Route::get('tags', [Tags::class, 'index'] );
+
+    Route::get('/search', [Search::class, 'search']);
 // });
