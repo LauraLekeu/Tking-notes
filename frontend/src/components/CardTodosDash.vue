@@ -78,7 +78,7 @@
             }
         },
         created() {
-            this.$store.dispatch('setTodos');
+            this.$store.dispatch('setTodos', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }
     }
 </script>

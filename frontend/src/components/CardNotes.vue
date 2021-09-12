@@ -57,8 +57,8 @@
             }
         },
         created() {
-            this.$store.dispatch('setNotes');
-            this.$store.dispatch('setCourses');
+            this.$store.dispatch('setNotes', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
+            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }
     }
 </script>

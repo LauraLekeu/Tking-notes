@@ -61,7 +61,7 @@ import axios from 'axios'
         },
         methods: {
             edit() {
-                this.formData.user = 1;
+                this.formData.user = this.$store.state.user.id;
                 console.log('form data', this.formData)
                 axios.post('http://127.0.0.1:8000/api/editNotes', this.formData)
                     .then(response => {
@@ -108,8 +108,8 @@ import axios from 'axios'
 
         },
         created() {
-            this.$store.dispatch('setNotes');
-            this.$store.dispatch('setCourses');
+            this.$store.dispatch('setNotes', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
+            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }, 
         mounted() {
             this.formData = {

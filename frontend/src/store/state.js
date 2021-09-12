@@ -1,4 +1,5 @@
 const state = {
+    user: null,
     courses: [],
     notes: [],
     todos: [],

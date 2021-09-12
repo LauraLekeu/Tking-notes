@@ -83,7 +83,7 @@
         },
         methods: {
             add() {
-                this.formData.user = 1;
+                this.formData.user = this.$store.state.user.id;
                 axios.post('http://127.0.0.1:8000/api/addNotes', this.formData)
                     .then(response => {
                         // Notification si OK
@@ -115,7 +115,7 @@
             },
         },
         created() {
-            this.$store.dispatch('setCourses');
+            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }
     }
 </script>

@@ -79,7 +79,7 @@
 
         },
         created() {
-            this.$store.dispatch('setCourses');
+            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }
     }
 </script>

@@ -6,17 +6,16 @@ const getters = {
     },
     getCourseById(state) {
         return function (data) {
-            return state.courses.find(course => course.id == data);
+            return state.courses.find(course => course.id === data && course.user_id === data.user_id);
           } 
     },
     // Return le cours en fonction de l'id de la note
-    // !!!!!!!!!!!!!! card todos
     getCoursesByTodosId(state) {
         return function(data) {
             return state.courses.find(course => course.id === data.course_id)
         }
     },
-    // !!!!!!!!!!!!!! card notes
+    //
     getCoursesByNotesId(state) {
         return function(data) {
             return state.courses.find(course => course.id === data.course_id)

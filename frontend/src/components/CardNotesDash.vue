@@ -83,7 +83,7 @@
             }
         },
         created() {
-            this.$store.dispatch('setNotes');
+            this.$store.dispatch('setNotes', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
         }
     }
 </script>
