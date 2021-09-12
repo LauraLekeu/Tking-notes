@@ -67,12 +67,13 @@
                           speed: 600
                       })
                   })
-                  .catch(() => {
+                  .catch((e) => {
+                      console.log(e)
                       // Notification si problème durant la transaction
                       this.$notify({
                           title: 'Oups...',
-                          text: 'There is a problem during deletion',
-                          type: 'error',
+                          text: 'Impossible de supprimer tant que ce cours à une tâche',
+                          type: 'warn',
                           speed: 600
                       })
                   })

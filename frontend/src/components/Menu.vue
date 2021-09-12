@@ -3,7 +3,7 @@
     <div class="menu">
             <div class="menu-burger"></div>
 
-            <div class="menu-logo">Logo du site</div>
+            <div class="menu-logo">t King Notes</div>
 
             <div class="menu-content">
                 <router-link class="menu-content-lien"  to="/dashboard">

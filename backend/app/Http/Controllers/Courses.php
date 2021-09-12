@@ -26,6 +26,21 @@ class Courses extends Controller
         ]);
     }
 
+    public function edit(Request $request) {
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $out->writeln($request->title);
+        $course = Course::find($request->id);
+        $course->name = $request->name;
+        $course->user_id = $request->user;
+        $course->updated_at = NOW();
+        $course->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Ok',
+            'course' => $course
+        ]);
+    }
+
     public function delete(Request $request) {
         $cours = Course::find($request->id);
         $cours->delete();

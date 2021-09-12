@@ -16,6 +16,8 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::get('courses', [Courses::class, 'index'] );
     // Add
     Route::post('/addCourse', [Courses::class, 'add']);
+
+    Route::post('/editCourses', [Courses::class, 'edit']);
     
     Route::post('/deleteCourses', [Courses::class, 'delete']);
     
@@ -30,6 +32,8 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::get('todos', [Todos::class, 'index'] );
     // Add
     Route::post('/addTodos', [Todos::class, 'add']);
+
+    Route::post('/editTodos', [Todos::class, 'edit']);
     
     Route::post('/deleteTodos', [Todos::class, 'delete']);
     

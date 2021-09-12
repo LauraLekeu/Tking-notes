@@ -29,6 +29,20 @@ class Todos extends Controller
         ]);
     }
 
+    public function edit(Request $request) {
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $out->writeln($request->title);
+        $todo = Todo::find($request->id);
+        $todo->completed = 1;
+        $todo->updated_at = NOW();
+        $todo->save();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Ok',
+            'todo' => $todo
+        ]);
+    }
+
     public function delete(Request $request) {
         $todo = Todo::find($request->id);
         $todo->delete();
