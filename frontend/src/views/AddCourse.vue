@@ -53,7 +53,7 @@
         },
         methods: {
             add() {
-                this.formData.user = 1;
+                this.formData.user = this.$store.state.user.id;
                 axios.post('http://127.0.0.1:8000/api/addCourse', this.formData)
                     .then(response => {
                         // Notification si OK

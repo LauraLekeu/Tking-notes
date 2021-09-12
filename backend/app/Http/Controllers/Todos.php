@@ -9,7 +9,9 @@ class Todos extends Controller
 {
     //
     public function index() {
-        return response()->json(Todo::all());
+        // $todos = Todo::where('user_id', '=', $request->user_id)->get();
+        // return response()->json($todos);
+        return response()->json(Todo::All());
     }
 
     public function add(Request $request) {

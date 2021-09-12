@@ -55,7 +55,7 @@
                   <div v-show="dataInscription.password_confirmation != dataInscription.password" class="notif-passewords">les mots de passe ne correspondent pas !</div>
 
                   <div class="inscription-connexion">
-                    <button @click.prevent="saveForm" type="submit">S'inscrire</button>
+                    <button @click.prevent="register" type="submit">S'inscrire</button>
                     <div class="liens-forms"  @click="loginType = 'connexion-form'"> Se connecter </div>
                   </div>
                 </form>
@@ -76,6 +76,7 @@
 <script>
   // @ is an alias to /src
   import Slider from '@/components/Slider.vue';
+  import axios from "axios";
 
   export default {
     name: 'Home',
@@ -100,7 +101,22 @@
       }
     },
     methods:{
-         
+        register() {
+            axios.post('http://127.0.0.1:8000/api/register', this.dataInscription).then((response) => {
+              console.log(response.data)
+              this.$cookies.config('10d')
+              this.$cookies.set('token', `Bearer ${response.data.access_token}`)
+              this.$router.push('/dashboard')
+              this.$store.dispatch('setUser', response.data.user)
+            });
+        },
+        login() {
+          axios.post('http://127.0.0.1:8000/api/login', this.dataConnexion).then((response) => {
+            this.$cookies.set('token', `Bearer ${response.data.access_token}`)
+            this.$router.push('/dashboard')
+            this.$store.dispatch('setUser', response.data.user)
+          })
+        }
     }
   }
 </script>

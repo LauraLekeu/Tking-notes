@@ -134,8 +134,8 @@
 
         },
         created() {
-            this.$store.dispatch('setTodos');
-            this.$store.dispatch('setCourses');
+            this.$store.dispatch('setTodos', {cookie: this.$cookies.get('token')});
+            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token')});
         }
     }
 </script>

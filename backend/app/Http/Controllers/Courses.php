@@ -9,7 +9,9 @@ class Courses extends Controller
 {
     //
     public function index() {
-        return response()->json(Course::all());
+        // $courses = Course::where('user_id', '=', $request->user_id)->get();
+        // return response()->json($courses);
+        return response()->json(Course::All());
     }
 
     public function add(Request $request) {

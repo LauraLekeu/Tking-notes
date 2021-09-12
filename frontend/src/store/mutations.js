@@ -1,6 +1,9 @@
 // Modifier 
 const mutations = {
-
+    SET_USER(state, data) {
+        state.user = data
+        console.warn(state.user)
+    },
     SET_COURSES (state, data) {
         state.courses = data;
     },
