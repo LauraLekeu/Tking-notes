@@ -59,7 +59,7 @@ import axios from 'axios'
                             type: 'success',
                             speed: 600
                             })  
-                            this.$store.dispatch('editCourse', response.data.note)
+                            this.$store.dispatch('editCourse', {course: response.data.course})
                         })
                         .catch(() => {
                                 // Notification si problème durant la transaction

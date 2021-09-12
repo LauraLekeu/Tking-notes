@@ -72,9 +72,10 @@ import axios from 'axios'
                             type: 'success',
                             speed: 600
                             })  
-                            this.$store.dispatch('editNote', response.data.note)
+                            this.$store.dispatch('editNote', {note: response.data.note})
                         })
-                        .catch(() => {
+                        .catch((e) => {
+                            console.log(e)
                                 // Notification si problème durant la transaction
                                 this.$notify({
                                         title: 'Oups...',

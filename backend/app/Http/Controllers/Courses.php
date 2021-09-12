@@ -37,7 +37,7 @@ class Courses extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Ok',
-            'note' => $course
+            'course' => $course
         ]);
     }
 

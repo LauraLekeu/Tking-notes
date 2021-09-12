@@ -9,7 +9,7 @@
                 <div>
                     <div class="card-container">
                         <div class="icon-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            <svg @click="edit(todo.id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-app" viewBox="0 0 16 16">
                                 <path
                                     d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z" />
@@ -44,7 +44,7 @@
                 <div  v-if="todo.completed === 1" class="card-style-2 completed" style="margin-bottom: 1em">
                     <div class="card-container">
                         <div class="icon-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                 class="bi bi-check" viewBox="0 0 16 16">
                                 <path
                                     d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
@@ -88,11 +88,51 @@
         props: {
 
         },
+        data() {
+            return {
+                formData: {
+                    id: null,
+                    completed: '',
+                    user: ''
+                }
+            }
+        },
         methods: {
             formatDate(value) {
                 if (value) {
                     return moment(String(value)).format("DD MMM YYYY ")
                 }
+            },
+            edit(todo) {
+                // if (data) {
+                this.formData.completed = 1
+                this.formData.id = todo
+                this.formData.user = this.$store.state.user.id;
+                console.log('form data', this.formData)
+                axios.post('http://127.0.0.1:8000/api/editTodos', this.formData)
+                    .then(response => {
+                        console.log(response)
+                            // Notification si OK
+                            this.$notify({
+                            title: 'Thank you !',
+                            text: 'The resource has been modified!',
+                            type: 'success',
+                            speed: 600
+                            })  
+                            this.$store.dispatch('editTodo', {todo: response.data.todo})
+                        })
+                        .catch((e) => {
+                            console.log('ERROR', e)
+                                // Notification si problème durant la transaction
+                                this.$notify({
+                                        title: 'Oups...',
+                                        text: 'There is a problem during modification',
+                                        type: 'error',
+                                        speed: 600
+                                        })
+                        }).finally(() => {
+                            // this.$router.push(`/note-${this.$route.params.id}`);
+                        })
             },
             supprimer(id) {
                 console.log(id)
@@ -101,7 +141,6 @@
                     console.log(response.data)
                       // Notification si OK
                       this.$store.dispatch('deleteTodo', {todo: response.data});
-                      console.log('note supprimée', response);
                       this.$notify({
                           title: 'Thank you !',
                           text: 'The resource has been deleted!',
@@ -136,6 +175,9 @@
         created() {
             this.$store.dispatch('setTodos', {cookie: this.$cookies.get('token')});
             this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token')});
+        },
+        mounted() {
+       
         }
     }
 </script>

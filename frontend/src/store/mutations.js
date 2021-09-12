@@ -46,6 +46,12 @@ const mutations = {
         const index = state.courses.findIndex(course => course.id === data.course.id);
         state.courses.splice(index, 1);
         state.courses.splice(index, 0, data.course);
+    },
+    EDIT_TODO(state, data) {
+        console.log(data.todo.id)
+        const index = state.todos.findIndex(todo => todo.id === data.todo.id);
+        state.todos.splice(index, 1);
+        state.todos.splice(index, 0, data.todo);
     }
 }
 

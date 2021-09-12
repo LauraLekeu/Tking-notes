@@ -32,6 +32,8 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::get('todos', [Todos::class, 'index'] );
     // Add
     Route::post('/addTodos', [Todos::class, 'add']);
+
+    Route::post('/editTodos', [Todos::class, 'edit']);
     
     Route::post('/deleteTodos', [Todos::class, 'delete']);
     
