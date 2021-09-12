@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function register(Request $request) {
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-$out->writeln($request->title);
         $validatedData = $request->validate([
                     // 'firstname' => 'required|string|max:255',
                     // 'lastname' => 'required|string|max:255',
