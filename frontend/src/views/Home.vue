@@ -25,7 +25,7 @@
                   <input v-model="dataConnexion.password" type="password" class="input-form inscription" placeholder="Mot de passe" />
 
                   <div class="inscription-connexion">
-                    <button @click.prevent="loginUser" type="submit">Se connecter</button>
+                    <button @click.prevent="login" type="submit">Se connecter</button>
                     <!-- <input type="submit" class="input-form inscription bouton"  value="Se connecter"> -->
                     <div class="liens-forms" @click="loginType = 'inscription-form'"> S'inscrire </div>
                   </div>

@@ -41,6 +41,11 @@ const mutations = {
         const index = state.notes.findIndex(note => note.id === data.note.id);
         state.notes.splice(index, 1);
         state.notes.splice(index, 0, data.note);
+    },
+    EDIT_COURSE(state, data) {
+        const index = state.courses.findIndex(course => course.id === data.course.id);
+        state.courses.splice(index, 1);
+        state.courses.splice(index, 0, data.course);
     }
 }
 

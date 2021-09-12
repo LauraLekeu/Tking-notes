@@ -68,6 +68,9 @@ const actions = {
     },
     editNote({commit}, data) {
         commit('EDIT_NOTE', data)
+    },
+    editCourse({commit}, data) {
+        commit('EDIT_COURSE', data)
     }
 }
 
