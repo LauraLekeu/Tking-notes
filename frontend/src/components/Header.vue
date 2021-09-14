@@ -88,13 +88,12 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 
     &-titre{
-        font-weight: 200;
-        font-size: 1.8em;
+        font-size: 2.2em;
         color: $color-contrast;
-        font-family: $font-primaire;
+        font-family: $font-secondaire;
         margin: 1em ;
        
         .bold {
