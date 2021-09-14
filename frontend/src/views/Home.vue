@@ -1,10 +1,10 @@
 <template>
   <div>
     <header>
-      <div id="logo-site">Logo du site</div>
+      <div class="logo-site"><img class="" :src="require(`../assets/images/logo.png`)" alt=""></div>
     </header>
 
-    <div class="main site">
+    <div class="page-home">
       <div class="container">
         <div class="sections large-section site" style="background: none; box-shadow: none;">
           <Slider />
@@ -25,7 +25,7 @@
                   <input v-model="dataConnexion.password" type="password" class="input-form inscription" placeholder="Mot de passe" />
 
                   <div class="inscription-connexion">
-                    <button @click.prevent="login" type="submit">Se connecter</button>
+                    <button @click.prevent="login" type="submit" class="btn-todo active">Se connecter</button>
                     <!-- <input type="submit" class="input-form inscription bouton"  value="Se connecter"> -->
                     <div class="liens-forms" @click="loginType = 'inscription-form'"> S'inscrire </div>
                   </div>
@@ -55,7 +55,7 @@
                   <div v-show="dataInscription.password_confirmation != dataInscription.password" class="notif-passewords">les mots de passe ne correspondent pas !</div>
 
                   <div class="inscription-connexion">
-                    <button @click.prevent="register" type="submit">S'inscrire</button>
+                    <button class="btn-todo active" @click.prevent="register" type="submit">S'inscrire</button>
                     <div class="liens-forms"  @click="loginType = 'connexion-form'"> Se connecter </div>
                   </div>
                 </form>
@@ -130,6 +130,26 @@
     padding: .5em 1em;
     font-size: 12px;
   }
+
+  .logo-site {
+    margin: 1em;
+    img {
+        width: 10%;
+    }
+  }
+
+  .img {
+        width: 70%;
+    } 
+
+    .page-home {
+      position: relative;
+      
+    }
+
+    .btn-todo {
+      box-shadow: 0 0 10px $color-dark;
+    }
 </style>
 
 <!-- 

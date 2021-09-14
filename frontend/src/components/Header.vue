@@ -14,7 +14,9 @@
                 </svg>
                 <div class="search-container" v-click-outside="close">
                     <ul v-if="isOpen">
-                        <router-link @click="clearSearch" :to="`/note-${note.id}`" v-for="note in searchedNotes" :key="note.id">{{note.title}}</router-link>
+                        <li>
+                            <router-link @click="clearSearch" :to="`/note-${note.id}`" v-for="note in searchedNotes" :key="note.id">{{note.title}}</router-link>
+                        </li>      
                     </ul>
                 </div>
            
@@ -125,29 +127,36 @@ export default {
 }
 
 .search-container {
-    background: white;
-    position: relative;
-    right: 5.7em;
+    background: $color-medium;
+    position: absolute;
+    right: 2em;
+    transform: translate(0, 1em);
     display: flex;
     border-radius: 5px;
-    margin-top: 5px;
     z-index: 9998;
     width: 20em;
 }
 
+.search-container li {
+    display: flex;
+    flex-direction: column;
+}
+
 .search-container ul {
-    background: white;
-    border-radius: 5px;
     width: 20em;
 }
 .search-container ul li a {
-    display: block;
-    color: #fff;
-    border-radius: 5px;
-    padding: 15px;
+    // display: block;
+    color: $color-contrast;
+    // border-radius: 5px;
+    list-style: none;
+    text-decoration: underline $color-second-contrast;
+    text-underline-offset: 3px;
+    // border-bottom: 1px solid $color-second-contrast;
+    margin: .5em 0;
 }
 .search-container ul li a:hover {
-    background: #7e7c85;
+    color: $color-second-contrast;
 }
 
 

@@ -2,19 +2,13 @@
                 PAGE SITE 
  ----------------------------------------------------------------- */
 header {
-    position: fixed;
-    z-index: 100;
-    top:0;
-    height: auto;
     width: 100%;
     background: $color-contrast;
-    box-shadow: 0 0 10px $color-contrast;
-    padding: .5em 2em;
+    box-shadow: 0 0 10px $color-dark;
+    padding: .3em 1em;
+    margin-bottom: 2em;
+    
 
-    #logo {
-        padding-top: 0em;
-        margin-left: 2em;
-    }
 }
 
 footer {

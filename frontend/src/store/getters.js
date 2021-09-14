@@ -55,6 +55,9 @@ const getters = {
     getTodos(state) {
         return state.todos
     },
+    getTodosCompleted(state) {
+        return state.todos.filter(todo => todo.completed === 0)
+    },
     // Return X nombre de todos
     getNbTodos(state) {
         return function({start, end}) {
