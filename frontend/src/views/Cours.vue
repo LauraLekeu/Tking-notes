@@ -17,17 +17,12 @@
 
 
                     <router-link to="nouveau-cours" class="bouton-add">
-                        <div class="">
-                            <div class="card-add">
-                                <div type="text" name="coursname" class="field-add"> Nouveau cours </div>
-                                <button class="icon-plus">
-                                    <svg fill="currentColor" width="30" height="30" viewBox="0 0 448 448"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0" />
-                                    </svg>
-                                </button>
-                            </div>
+                        <div class="test-new-btn">Ajouter un nouveau cours
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-plus" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
                         </div>
                     </router-link>
 
@@ -46,7 +41,7 @@
 
                 </div>
 
-                
+
 
             </div>
 
@@ -83,10 +78,13 @@
             nbCourses() {
                 return this.$store.getters.getCourses.length;
             },
-            
+
         },
         created() {
-            this.$store.dispatch('setCourses', {cookie: this.$cookies.get('token'), user_id: this.$store.state.user.id});
+            this.$store.dispatch('setCourses', {
+                cookie: this.$cookies.get('token'),
+                user_id: this.$store.state.user.id
+            });
         }
     }
 </script>
