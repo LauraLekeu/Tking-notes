@@ -40,14 +40,6 @@ const actions = {
         })
              .then(response => (commit('SET_TODOS', response.data)));
     },
-    // setTags({commit}, data) {
-    //     axios.get('http://127.0.0.1:8000/api/tags', {
-    //         headers: {
-    //             Authorization: data.cookie
-    //         }
-    //     })
-    //          .then(response => (commit('SET_TAGS', response.data)));
-    // },
     addCourse({commit}, payload) {
         commit('ADD_COURSE', payload)
     },
