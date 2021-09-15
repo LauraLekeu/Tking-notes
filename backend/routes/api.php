@@ -9,11 +9,14 @@ use App\Http\Controllers\Todos;
 use App\Http\Controllers\Tags;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Search;
+use App\Http\Controllers\Users;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/user', [Users::class, 'index']);
 
-// Route::group(['middleware' => ['auth:sanctum']], function() {
+Route::group(['middleware' => ['auth:sanctum']], function() {
+
     Route::get('courses', [Courses::class, 'index'] );
     // Add
     Route::post('/addCourse', [Courses::class, 'add']);
@@ -41,4 +44,4 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::get('tags', [Tags::class, 'index'] );
 
     Route::get('/search', [Search::class, 'search']);
-// });
+});
