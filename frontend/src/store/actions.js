@@ -9,7 +9,7 @@ const actions = {
     setCourses({commit}, data) {
         // Transaction ajax
         axios.get('http://127.0.0.1:8000/api/courses', {
-            data: {
+            params: {
                 user_id: data.user_id
             },
             headers: {
@@ -20,7 +20,7 @@ const actions = {
     },
     setNotes({commit}, data) {
         axios.get('http://127.0.0.1:8000/api/notes', {
-            data: {
+            params: {
                 user_id: data.user_id
             },
             headers: {
@@ -31,7 +31,7 @@ const actions = {
     },
     setTodos({commit}, data) {
         axios.get('http://127.0.0.1:8000/api/todos', {
-            data: {
+            params: {
                 user_id: data.user_id
             },
             headers: {

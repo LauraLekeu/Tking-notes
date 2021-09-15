@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Courses extends Controller
 {
     //
-    public function index() {
-        // $courses = Course::where('user_id', '=', $request->user_id)->get();
-        // return response()->json($courses);
-        return response()->json(Course::All());
+    public function index(Request $request) {
+        $courses = DB::table('courses')->where('user_id', $request->user_id)->orderBy('created_at', 'desc')->get();
+        return response()->json($courses);
     }
 
     public function add(Request $request) {

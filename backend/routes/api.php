@@ -14,6 +14,7 @@ use App\Http\Controllers\Users;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/user', [Users::class, 'index']);
+Route::get('/search', [Search::class, 'search']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
@@ -43,5 +44,4 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     
     Route::get('tags', [Tags::class, 'index'] );
 
-    Route::get('/search', [Search::class, 'search']);
 });

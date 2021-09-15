@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\DB;
 class Notes extends Controller
 {
     //
-    public function index() {
-        // $notes = Note::where('user_id', '=', $request->user_id)->get();
-        // return response()->json($notes);
-        return response()->json(Note::All());
+    public function index(Request $request) {
+        $notes = DB::table('notes')->where('user_id', $request->user_id)->orderBy('created_at', 'desc')->get();
+        return response()->json($notes);
     }
 
     public function add(Request $request) {
