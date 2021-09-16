@@ -114,8 +114,8 @@ export default {
           this.$store.dispatch("deleteNote", { note: response.data });
           console.log("note supprimée", response);
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been deleted!",
+            title: "Merci !",
+            text: "La note a bien été supprimée!",
             type: "success",
             speed: 600,
           });
@@ -124,7 +124,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem during deletion",
+            text: "Problème durant la suppression",
             type: "error",
             speed: 600,
           });

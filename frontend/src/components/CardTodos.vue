@@ -141,8 +141,8 @@ export default {
           console.log(response);
           // Notification si OK
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been modified!",
+            title: "Bien joué !",
+            text: "Tâche accomplie !",
             type: "success",
             speed: 600,
           });
@@ -179,8 +179,8 @@ export default {
           // Notification si OK
           this.$store.dispatch("deleteTodo", { todo: response.data });
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been deleted!",
+            title: "Merci !",
+            text: "La tâche a bien été supprimée!",
             type: "success",
             speed: 600,
           });
@@ -189,7 +189,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem during deletion",
+            text: "Problème pendant la suppression",
             type: "error",
             speed: 600,
           });

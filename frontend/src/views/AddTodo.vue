@@ -95,8 +95,8 @@ export default {
           // Notification si OK
           this.$store.dispatch("addTodo", response.data.todo);
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been added!",
+            title: "Merci !",
+            text: "La tâche a bien été ajoutée",
             type: "success",
             speed: 600,
           });
@@ -105,7 +105,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem with adding",
+            text: "Problème durant l'ajout",
             type: "error",
             speed: 600,
           });
@@ -177,7 +177,7 @@ export default {
     margin-bottom: 1rem;
   }
   #field-form-text {
-    min-height: 150px;
+    min-height: 450px;
     height: auto;
   }
 }

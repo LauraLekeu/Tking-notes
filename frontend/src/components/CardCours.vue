@@ -99,8 +99,8 @@ export default {
           this.$store.dispatch("deleteCourse", { course: response.data });
           console.log("note supprimée", response);
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been deleted!",
+            title: "Merci !",
+            text: "Le cours a bien été supprimé!",
             type: "success",
             speed: 600,
           });
@@ -110,7 +110,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "Impossible de supprimer tant que ce cours à une tâche",
+            text: "Impossible de supprimer, ce cours est lié à une tâche",
             type: "warn",
             speed: 600,
           });

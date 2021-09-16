@@ -9,7 +9,7 @@
           <div class="section-fields">
             <input
               id="field-form-title"
-              class="fields-form"
+              class="fields-form notes"
               type="text"
               name="titre-note"
               placeholder="Nom du cours"
@@ -62,8 +62,8 @@ export default {
         .then((response) => {
           // Notification si OK
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been modified!",
+            title: "Merci !",
+            text: "Le cours a bien été modifié",
             type: "success",
             speed: 600,
           });
@@ -73,7 +73,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem during modification",
+            text: "problème durant la modification",
             type: "error",
             speed: 600,
           });

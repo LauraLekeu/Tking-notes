@@ -65,8 +65,8 @@ export default {
           console.log(response);
           this.$store.dispatch("addCourse", response.data.course);
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been added!",
+            title: "Merci!",
+            text: "Le nouveau cours a bien été ajouté",
             type: "success",
             speed: 600,
           });
@@ -75,7 +75,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem with adding",
+            text: "Problème durant l'ajout",
             type: "error",
             speed: 600,
           });

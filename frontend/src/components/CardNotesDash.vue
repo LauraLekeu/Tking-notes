@@ -51,12 +51,12 @@
     </div>
 
     <div v-for="note in notes" :key="note.id" class="card-small cards-hover">
-      <a href="detail.html" class="card-link">
+      <router-link :to="`/note-${note.id}`" class="card-link">
         <div class="double-titre">
           <div class="card-titre">{{ note.title }}</div>
         </div>
-        <!-- <div class="card-soustitre"> {{   course(note).name }}  </div> -->
-      </a>
+        <div class="card-soustitre">{{ course(note).name }}</div>
+      </router-link>
       <div class="card-icons">
         <div class="icons-container">
           <a href="" class="icon-edit">

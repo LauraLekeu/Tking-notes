@@ -9,7 +9,7 @@
           <div class="section-fields">
             <input
               id="field-form-title"
-              class="fields-form"
+              class="fields-form notes"
               type="text"
               name="titre-note"
               v-model="formData.title"
@@ -81,8 +81,8 @@ export default {
         .then((response) => {
           // Notification si OK
           this.$notify({
-            title: "Thank you !",
-            text: "The resource has been modified!",
+            title: "Merci !",
+            text: "La note a bien été modifiée!",
             type: "success",
             speed: 600,
           });
@@ -93,7 +93,7 @@ export default {
           // Notification si problème durant la transaction
           this.$notify({
             title: "Oups...",
-            text: "There is a problem during modification",
+            text: "Problème pendant la modification",
             type: "error",
             speed: 600,
           });
