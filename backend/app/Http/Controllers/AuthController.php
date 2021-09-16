@@ -52,4 +52,11 @@ class AuthController extends Controller
                 'user_id' => $user->id
         ]);
     }
+
+    public function logout() {
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Log out successfully !'
+        ]); 
+    }
 }

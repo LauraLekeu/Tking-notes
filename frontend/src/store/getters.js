@@ -25,7 +25,7 @@ const getters = {
     // Return un nombre de cours
     getNbCourses(state) {
         return function({start, end}) {
-            let courses = {...state.courses.slice(start, end)}
+            let courses = [...state.courses.slice(start, end)]
             return courses
         }
     },
@@ -33,15 +33,21 @@ const getters = {
     getNotes(state) {
         return state.notes
     },
+    getNotesByCourseId(state) {
+        return function(data) {
+            return state.notes.filter(note => note.course_id == data)
+        }
+    },
     getNoteById(state) {
         return function (data) {
+            console.log('data', data)
             return state.notes.find(note => note.id == data);
           } 
     },
     // Return un nombre de notes
     getNbNotes(state) {
         return function({start, end}) {
-            let notes = {...state.notes.slice(start, end)}
+            let notes = [...state.notes.slice(start, end)]
             return notes
         }
     },
@@ -61,7 +67,7 @@ const getters = {
     // Return X nombre de todos
     getNbTodos(state) {
         return function({start, end}) {
-            let todos = {...state.todos.slice(start, end)}
+            let todos = [...state.todos.slice(start, end)]
             return todos
         }
     },

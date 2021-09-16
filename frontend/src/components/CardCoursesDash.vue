@@ -3,7 +3,7 @@
     <div class="card-add-dash">
       <router-link to="/nouveau-cours" class="bouton-add">
         <div class="test-new-btn">
-          Ajouter un nouveau cours
+          Nouveau cours
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -44,6 +44,7 @@
         border-bottom: 1px solid #d1d1d1;
         margin-top: 1.5em;
       "
+      v-if="courses.length"
     >
       Derniers cours
     </div>
@@ -53,7 +54,10 @@
       :key="course.id"
       class="card-small cards-hover"
     >
-      <a href="detail.html" class="card-link">
+      <router-link
+        :to="{ name: 'Notes', params: { course_id: course.id } }"
+        class="card-link"
+      >
         <div class="double-titre">
           <div class="card-titre">{{ course.name }}</div>
         </div>
@@ -64,7 +68,7 @@
               : "Pas de note"
           }}
         </div>
-      </a>
+      </router-link>
       <div class="card-icons">
         <div class="icons-container">
           <a href="" class="icon-edit">
@@ -78,7 +82,7 @@
       </div>
     </div>
 
-    <router-link to="/cours">
+    <router-link to="/cours" v-if="courses.length">
       <div class="voir-plus">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +105,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from "axios";
 export default {
   name: "CardCoursesDash",
   data() {
@@ -126,7 +130,22 @@ export default {
     },
   },
   methods: {},
-  created() {
+  async created() {
+    // Si l'id de l'utilisateur se trouve dans les cookies
+    if (this.$cookies.get("user_id")) {
+      // Récupération des données de l'utilisateur
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/user",
+        { params: { id: this.$cookies.get("user_id") } },
+        {
+          headers: {
+            Authorization: this.$cookies.get("token"),
+          },
+        }
+      );
+      // Stockage de l'utilisateur dans le store
+      this.$store.dispatch("setUser", response.data.user);
+    }
     this.$store.dispatch("setCourses", {
       cookie: this.$cookies.get("token"),
       user_id: this.$store.state.user.id,

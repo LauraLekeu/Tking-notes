@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Todos extends Controller
 {
     //
-    public function index() {
-        // $todos = Todo::where('user_id', '=', $request->user_id)->get();
-        // return response()->json($todos);
-        return response()->json(Todo::All());
+    public function index(Request $request) {
+        $todos = DB::table('todos')->where('user_id', $request->user_id)->orderBy('deadline', 'asc')->get();
+        return response()->json($todos);
     }
 
     public function add(Request $request) {
