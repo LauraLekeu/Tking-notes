@@ -13,6 +13,7 @@ use App\Http\Controllers\Users;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/user', [Users::class, 'index']);
 Route::get('/search', [Search::class, 'search']);
 

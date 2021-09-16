@@ -51,6 +51,9 @@ const mutations = {
         const index = state.todos.findIndex(todo => todo.id === data.todo.id);
         state.todos.splice(index, 1);
         state.todos.splice(index, 0, data.todo);
+    },
+    LOGOUT_USER(state) {
+        state.user = null;
     }
 }
 

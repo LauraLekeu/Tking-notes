@@ -77,7 +77,7 @@
         Notes
       </router-link>
 
-      <router-link class="menu-content-lien logout" to="/">
+      <router-link class="menu-content-lien logout" to="/" @click="logout">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -102,10 +102,22 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Menu",
   props: {},
-  methods: {},
+  methods: {
+    logout() {
+      // Suppression du token
+      axios.post("http://127.0.0.1:8000/api/logout", this.$store.state.user);
+      // Suppression du token dans les cookies
+      this.$cookies.remove("token");
+      // Suppression de l'id de l'utilisateur dans les cookies
+      this.$cookies.remove("user_id");
+      // Suppression des données de l'utilisateur dans le store
+      this.$store.dispatch("logoutUser");
+    },
+  },
 };
 </script>
 
